@@ -3,7 +3,7 @@ from bot import start, merge_files
 
 def main() -> None:
   """Starts the bot."""
-  application = ApplicationBuilder().token("YOUR_TELEGRAM_BOT_TOKEN").build()
+  application = ApplicationBuilder().token("7825342391:AAFyHNUHeY4fC8jxS8iV_iuM-iDtdlQH_8Q").build()
 
   # Register handlers
   application.add_handler(CommandHandler("start", start))
