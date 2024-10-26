@@ -1,0 +1,2 @@
+pip install python-telegram-bot python-dotenv moviepy
+sudo apt-get update && sudo apt-get install ffmpeg 
