@@ -1,5 +1,5 @@
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters
-from bot.py import start, merge_files
+from bot import start, merge_files
 
 def main() -> None:
     """Starts the bot."""
