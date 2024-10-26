@@ -7,7 +7,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
 
 # Your Telegram bot token
-TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
+TOKEN = os.environ['7825342391:AAFyHNUHeY4fC8jxS8iV_iuM-iDtdlQH_8Q']
 
 # Logging configuration
 logging.basicConfig(
