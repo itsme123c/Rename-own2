@@ -7,7 +7,7 @@ from telegram import Update
 from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, MessageHandler, filters
 
 # Your Telegram bot token
-TOKEN = os.environ['7825342391:AAFyHNUHeY4fC8jxS8iV_iuM-iDtdlQH_8Q']
+TOKEN = os.environ['TELEGRAM_BOT_TOKEN']
 
 # Logging configuration
 logging.basicConfig(
@@ -53,7 +53,7 @@ async def merge_files(update: Update, context: ContextTypes.DEFAULT_TYPE) -> Non
         await merge_video_audio(update, context, last_messages)
     elif any(file_type in VIDEO_TYPES for file_type in file_types) and any(file_type in SUBTITLE_TYPES for file_type in file_types):
         await merge_video_subtitle(update, context, last_messages)
-                      else:
+    else:
                 await update.message.reply_text('Invalid file types. Please send a video and audio or a video and subtitles file.')
 
 
@@ -102,7 +102,8 @@ async def merge_video_audio(update: Update, context: ContextTypes.DEFAULT_TYPE, 
     merged_video_path = f'/tmp/{user_id}_merged_video.mp4'
     merged_video_command = f'ffmpeg -i {video_path} -i {audio_path} -c copy {merged_video_path}'
     os.system(merged_video_command)
-        # Send the merged video to the user
+    
+    # Send the merged video to the user
     await context.bot.send_video(chat_id=chat_id, video=open(merged_video_path, 'rb'))
     
     # Clean up the downloaded files
@@ -133,8 +134,7 @@ async def merge_video_subtitle(update: Update, context: ContextTypes.DEFAULT_TYP
     
     # Add subtitles to the video using ffmpeg
     merged_video_path = f'/tmp/{user_id}_merged_video.mp4'
-    merged_video_command = f'ffmpeg -i {video_path} -i {subtitle_path} -map 0:v -map 1:s -c:v copy -c:a copy -c:s mov_text {
-    merged_video_path}'
+    merged_video_command = f'ffmpeg -i {video_path} -i {subtitle_path} -map 0:v -map 1:s -c:v copy -c:a copy -c:s mov_text {merged_video_path}'
     os.system(merged_video_command)
     
     # Send the merged video to the user
